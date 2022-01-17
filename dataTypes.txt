@@ -1,0 +1,84 @@
+JavaScript DataTypes
+
+1. Type of data which is stored and manipulated with in the program is called a datatype.
+   Variable and functions holds certain types of data like numbers, strings etc.,. all
+   this comes under datatypes.
+2. There are 7 different types of datatypes in JavaScript.
+   1. Strings
+   2. Number
+   3. Object
+   4. Boolen
+   5. Null
+   6. Undefined
+   7. Symbol
+
+STRINGS
+
+1. Strings are used for holding text there are 3 different ways to create strings in JavaScript.
+   1. Single Quotes = 'text'
+   2. Double Quotes = "text"
+   3. Backticks = `text`
+
+2. Single quotes and double quotes are same but there is a slight difference. Single quotes and double quotes and backticks is explained below with an example.
+   1. let a = 'she's so 'cool''; //output: error: /script.js: Missing semicolon. (1:13). This is because when it comes to 'she's the statement is starting from s and       ending at e if we consider single quotes. In order ro avoid this situations we can modify this using double quotes.
+   2. let a= "she's so "cool""; //output: she's so "cool". If you want to escape doublequotes the next option is using backticks.
+   3. let a = `she's so "cool" `; //output: she's so "cool". 
+
+3. Uses of backtick. When you want a multi line string for the following data const student = { name: 'Richard Kalehoff', guardian: 'Mr. Kalehoff' }; 
+   const teacher = { name: 'Mrs. Wilson', room: 'N231'} how are we going to write in general.
+
+   example: let message = student.name + ' please see ' + teacher.name + ' in ' + teacher.room + ' to pick up your report card.';
+   output:  Richard Kalehoff please see Mrs. Wilson in N231 to pick up your report card.
+
+4. With the use of backticks we can make it much more simple as show below.
+   example: let message = `${student.name} please see ${teacher.name} in ${teacher.room} to pick up your report card.`;
+   output:  Richard Kalehoff please see Mrs. Wilson in N231 to pick up your report card.
+
+NUMBERS
+
+1. Numbers is javaScript are pretty simple. We can create an integer which is a hole number and we create float with is a number with decimal value. In JavaScript typeof keyword is used to say what type is the variable for example: let a = 10; typeof a; //output: number, let b = "name"; typeof b; //output: string.
+
+2. Multiplication, division, substration and addition come under numbers because this operations can only be done using numbers. Addition symbol is used to add 2 numbers and for concatenation of strings.
+
+3. There are few helper methods along with numbers in JavaScript. That is Math.round(), Math.floor(), Math.ceil() Math.random().
+
+4. Examples for these methods 1. Math.round(20.3) //output: 20, Math.round(20.6) //output: 21. Math.round will give you the number rounded up or rounded down depending    on the given number
+   2. Math.floor(20.2) //output: 20, Math.floor(20.999) //output: 20. Math.floor will give you the lower number.
+   3. Math.ceil(20.222) //output: 21, Math.floor(20.99) //output: 21. Math.ceil will give you the upper number.
+   4. Math.random() //output: 0.78523, Math.random() //output: 0.0455582. Math.random() will give you the random numbers each time inbetween 0 to 1.
+5. There are 2 more operators apart from addition, multiplication, division and substraction they are modulo and power operators.
+
+6. What is a modulo operator. lets see an example to understand it much better. lets say we have 20 candys and we need to divide them equally amoung 3 kids.
+   const a = 20, const b = 3, console.log(a/b); //output: 6.666666 we cant divide them like 6.666 to each kid so we will use a math method
+   console.log(Math.floor(a/b)); //output: 6 now each kid gets 6 candy. As we cant divide 20 candys equally there will be some lefover candys how to know this leftover
+   candys. we can know by using modulo operator example: console.log(a%b); //output: 2. There are 2 leftovers modulo means the reminder.
+
+7. Power operator. If we do 10 ** it means 10 to the power of 2 example: 10 ** 2 //output: 100, let a = 1000 ** 200 //output: Infinity, typeof Infinity //output:    number.
+
+8. There is one more thing to know when it comes to numbers that is NaN not a number example: let a = 10 + 'apple' //output: NaN this means apple is not a number.
+
+OBJECTS
+
+1. Objects are the building blocks of JavaScript. Objects are almonst everything in JavaScript. Objects are used fot collecting data of colleting functionalities.
+
+2. Up to know we are using random variables like const first = "dodda", const age = 27 this is not the corrects way to do things, because the values are not    associated. Instead create an object called person.
+3. The most comman way to create an object is using curly brases and semicolon. example const person = {} ; Inside the objects you have properties and values as shown    const person = {
+   first: "Dijo",
+   last: "Mon",
+   age: 28
+   };
+4. The above contains first, last and age variables which is used to group the data and details of the person. If you type person in console it will return the value    that contains with in the person. To know the first name of the person we will use dot as shown person.first //output: dijo.
+
+NULL & UNDEFINED
+
+Undefined: The variable which is declared but not assigned to any value is defined as undefined. Example: let dog; console.log(dog); //output: undefined. The variable   is defined as dog but the dog is not assigned to any value it means the dog is not holding any value so it is said as udefined.
+
+Null: Null is a value which is assigned to a variable. In order to say the the variable contains nothing is is assigned to null value. Example: let dog = Null; 
+      console.log(dog); //output: Null. The dog is assigned to a value called Null.
+
+BOOLEAN
+
+1. Boolean is either true or false. Boolean is used for logic such as if statements in JavaScript.
+2. Equal to , Double equal to and triple equal to. Equal to is used in variables to declare values. Double equales to is used to see weather the 2 values are equal or  
+   not is most cases or almost we use only triple equal to in JavaScript. where as triple equal to is used to check wheather the value and the type of 2 variables are    equale or not. example: const age = 100; age === 100 //output: true because age is a number and age is holding a number 100. age === 10 //output: false because age
+   is a number but age value is 100 not 10 so it returns false.

@@ -1,0 +1,116 @@
+JavaScript Variables
+
+There are 3 types of variables we use in JavaScript:
+1. var
+2. let
+3. const
+
+These 3 type of variables are used to declare a variable. Let us see an example for each variable.
+
+var a = "apple";
+console.log(a); //output: apple
+
+let age = 30;
+console.log(age); //output: 30
+
+const c = true;
+console.log(c); //output: c
+
+Differences between each variable in JavaScript
+
+1. var and let varaiables can be updated while const cannot be updated const means constant variable.
+2. The const varibale cannot be changed after declaring the variable if you try to update the variable you will find the following error message in the console("Uncaught errortype: Assignment to constant variable") there are instance where we can change constant variable that will be discussed later.
+3. Let us see an example for updating var and let variable.
+4. var a = "apple";
+       a = "banana";
+   console.log(a);// output: banana
+5. There is no need to redeclare the variable while we are updating the varibale it will be a bad practise and code may not work.
+6. Example for updating let variable let age = 30;
+   age = 60;
+   console.log(age); //output: 60
+7. Whenever you want to update a new value you do not need to put the variable keyword infront of it, just change the value to the new value.
+
+Scoping of Varibales
+
+1. var variables are scoped differently compared to let and const.
+2. var variable are function scoped variable it is reffered as it is avaliable within the parent function.
+3. let and const are reffered as block scope variables.
+4. let and const variables are couple years older compared to var. var is been used since the Javascript is introduced.let and const are introduced as a part of ES6.
+5. Few people thinks that the var keyword is old and is depecated but its not true. 
+
+Function Scoped Variable
+
+As we discussed above var is a function scoped variable, lets see an example related to var.
+
+function getClothing(isCold){
+if(isCold){
+var freezing = "Grab a Jacket";
+}
+else{
+var hot = "Grab a Short";
+console.log(freezing);
+}
+}
+
+What do you expect the output of the above code. We will think that the output may be a reference error but the //output : Undefined, since var is a function scoped variable the code is considered as listed below.
+
+function getClothing(isCold){
+var freezing, hot;
+if(isCold){
+freezing = "Grab a Jacket";
+}
+else{
+hot = "Grab a Short";
+console.log(freezing);
+}
+}
+
+To completely avoid this type of situations we use let and const instead of var.
+
+Block Scoped Variables
+
+Block scoped variable is defined as with the block of code which means with in curly braces as shown in below code.
+function getClothing(isCold){
+if(isCold){
+let freezing = "Grab a Jacket";
+}
+else{
+let hot = "Grab a Short";
+console.log(freezing);
+}
+} //output: Reference Error
+
+1. Variable declaring with let can be reassigned but it cannot be redeclared in the same scope.
+2. Variable declaring with const must be assigned to an intial value, but cannot be reassigned or redeclared in the same scope.
+
+Naming Conventions
+
+There are few rules how to start a variable.
+1. The variables should not start with capital letter. Lets consider the example below.
+    var Age = 40; This code works fine and it is not wrong or brocken javascript but its a convention that variables should not start with captial letter unless it is the name of a class.
+2. variables must always start with lowecase letters or it can also use a letter(a,d,c,etc.,..)
+3. They can also contains a _ or a $ sign.
+4. Variables can be a number but should not start with a number.
+5. Variables with _ and $ will also works but these are synonymous for few library so we normally dont use this symblos.
+
+Camel Casing
+
+1. Some variables are made up of 2 words for example: let iAmFoodie; this type of variables are called as camel case variables.
+2. UpperCase camel is made up of 2 words which starts with a captial letter for example: var IAmFoodie; , we never used this type of variables unless we are defining a class.
+
+Snake Case
+1. Instead of using captial letters inbetween we use underscores. This case is called as snake case.
+2. Example let this_is_a_case = "cool";
+
+Kebab Case
+1. There is something called kebab case which is not allowed for variable declaration.
+2. Example let this-is-a-case;
+3. Most developers use camel case.
+
+
+
+
+
+
+
+
