@@ -1,0 +1,56 @@
+
+SCOPE
+
+1. GLOBAL VARIABLE: when you just go ahead and create a variable in a javascript file, not inside of a function, not inside of a module, not inside of an if statement,    when you create it out in the open, that is what is referred to as a global variable. You can access the global variable anywhere in the javascript that is running    in the same page or via console. In the browser the global scope is windows. If you type window in the console, you will see every single thing that is attached to    the global scope is inside of the window. Methods that are globaly avaiable to us that is setTimeout() is on windows object that is why it is called global.
+   example: const first = 'wes';
+            let second = 'bos';
+            var age = 100;
+   However, if you type in window.first and window.second you will get undefined but when you type in window.age it will return 100. This is because var variables are    attached to the window object and they are globally scoped, and const and let variables when declared like the example above are still globally scoped, they are    just not attached to the window. Anything that is in the global scope is attached to the window object with the exception of const and let variables.
+
+2. FUCTION SCOPING: when variables are created inside of a function, those variables are only ever available inside of that function. If you ever have a variable    inside of a function that is very similar to a variable outside of a function, name the variable inside of the function more specifically so you have access to    both.
+
+3. BLOCK SCOPING: A block scoped variable means that the variable defined within a block will not be accessible from outside the block. A block can reside inside a    function, and a block scoped variable will not be available outside the block even if the block is inside a function.
+
+4. LEXICAL OR STATIC SCOPING: What that means is the way that variable look-up or scope look-up happens, is where the functions are defined, not where they are run.
+
+
+HOSTING
+
+1. Hosting in JavaScript allows you to access functions and variables before they are created. There are 2 things in JavaScript that are hosted 1. Function Declaration    2. Variable declaration.
+
+2. FUNCTION DECLARTION: Next, make a function sayHi(); If you try to run this function before it exists, will it work? 
+   example: sayHi();
+		function sayHi() {
+		  console.log('hey!');
+			}
+   It does work! because when you run your JavaScript file, the JavaScript compiler will take all of your function declarations and move them to the top of the file so    they are all available before you use them. Because of hosting you can technically run the function before it exist.
+
+3. VARIABLE DECLARATION: Let us see an example for variable hosting console.log(age); var age = 10;. What will happen? Is it going to error? Undefined? 10? It returns    undefined. JavaScript will hoist the variable declaration but it will not hoist settings of the value. So what JavaScript does is it says before everything runs, I    am going to make my variables and then I'm just going to go ahead and update them. You can use hoisting to figure out if variables are created but not what their       values are later in the file. Hoisting is when variable declarations and function declarations are hoisted to the top of the file. Only function declaration types      of functions are hoisted not function expression. Example: var age; console.log(age); age = 10; although let and const variables are hoisted, they are not    initialised to undefined, unlike var variables. Hence, in the above example if you replace var with let or const, you would be presented with a ReferenceError    saying - age is not defined
+
+CLOSURE
+
+1. A closure is the abillity to access the parent level scope from the child level scope even after the parent function has been terminated.
+   example: function outer() {
+		  const outerVar = "Hey I am the outer Var";
+		  function inner() {
+		    const innerVar = "hey I am an inner var";
+		    console.log(innerVar);
+		    console.log(outerVar);
+			  }
+			  return inner;
+			}
+			const innerFn = outer();
+			innerFn();
+   What you can do is stick a function into a variable, and then at a later point in time, you can have access to that function. A closure comes into play because you    can access the function even though the outer function is done. Now we get this weird thing where when we run the function outside of it, it's still able to access    it. That is what is referred to as a closure.
+   example: function createGreeting(greeting = "") {
+             const myGreet = greeting.toUpperCase();
+		  return function(name) {
+		    return `${myGreet} ${name}`;
+			  };
+				}
+            		const sayHello = createGreeting('hello');
+			const sayHey = createGreeting('hey');
+			console.log(sayHello('wes'));
+			console.log(sayHello('kait'));
+			console.log(sayHey('kait'));
+   Since our inner scope references a variable that was created in our outer scope, that is what is referred to as closure.
