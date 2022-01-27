@@ -1,0 +1,241 @@
+
+FUNCTIONS
+
+1. A function is a set of statements thats performs a task or calculate a value. There are different ways to define a function. We can learn about a JavaScript    functions with a small example. Lets create a function, How to create a function ? 
+
+2. For creating a function first type function and then the name of the function for example: function CalculateBill(){ }. What we have done is we have defined a       function name as CalculateBill and we gave parenthesis and a open and closed block to the function. There are certain rules to create a function which we will       discuss later.
+
+3. We can write a console.log statement in the function to know weather the function is running or not. function CalculateBill(){
+   console.log("Running CalculateBill function"); }. When we call the function in console it returns Runiing CalculateBill function, undefined.
+
+4. Lets us say that the meal cost is 100$ and the tax is 13% we will add this values in our function as function CalculateBill(){
+   console.log("Running CalculateBill function");
+   const total = 100 * 1.13;
+   console.log(total); }. //output: Running CalculateBill function, 112.9999999999
+
+5. After seeing this we may think that our function is working fine but when we type total in console it throws an error saying that total is undefined. This is    because of scope of the variable the total variable is available only inside of the function.
+
+6. When we called calculateBill() earlier, we got undefined returned in the console. To fix that, we need to return total. function CalculateBill(){
+   console.log("Running CalculateBill function");
+   const total = 100 * 1.13;
+   console.log(total); 
+   return total; }. //output: Running CalculateBill function, 112.9999999999, 112.9999999999.
+
+7. The total variable is still not available to us. Modify the code as const mytotal = CalculateBill();
+   console.log(myTotal); Since total is created inside of the function, it is only ever available inside of calculateBill and when the function is done running, that    variable is cleaned up (or what is called garbage collected in JavaScript and it's no longer needed). If you ever want to capture the value returned from    calculateBill(), you have to stick it into a variable before you can go ahead and display it.
+
+8. CalculateBill would not be useful if it could only calculate the value assuming the bill is $100 and a 15% tax rate, so we need to modify those hardcoded values.
+   const bill = 100;
+   const taxRate = 0.13;
+   function calculateBill() {
+    console.log("Running calculate bill!!");
+    const total = bill * 1 + taxRate;
+    return total;
+    }. It works but this is not the best way to do.
+
+9. There come a topic called Parameters and Aruguments in a function which makes our job easy and comfortable. Now how to use this parameters. Parameters are called as    placeholders. Example function CalculateBill(billAmount, taxRate). Inside of the function body, we will have access to the two variables that were passed.
+
+10. function calculateBill(billAmount, taxRate) {
+      // this is the function body
+     console.log("Running Calculate Bill!!");
+     const total = billAmount * (1 + taxRate);
+     return total;
+       }
+     const myTotal = calculateBill(100, 0.13);
+     console.log(myTotal); //output: $113
+
+11. What if we want to use a default tax value in a function instead of changing it all the time. If you change the code as below 
+    function calculateBill(billAmount, taxRate = 0.13) {
+      // this is the function body
+     console.log("Running Calculate Bill!!");
+     const total = billAmount * (1 + taxRate);
+     return total;
+       }
+     const myTotal = calculateBill(100, undefined);
+     console.log(myTotal); //output: $113.
+12. So the only thing that you can pass into a function to cause it to use the default is undefined. A function will only ever fall back to the defaults if nothing is     passed. Remember when a variable is not set to anything, its value is undefined. So you cannot go ahead and pass zero here and expect it to false back to the     default.
+
+DIFFERENT WAYS TO DECLARE A FUNCTION
+
+1. JavaScript functions are values in themselves, they can be stored in variables and can be passed into other functions. Let's start by looking at how you can put a    function into a variable, and then look at the different ways to declare functions.
+
+2. We know one way of declaring a function for example function Details(firstName){ return `Dr. ${firstName}`; }.
+
+3. ANONYMOUS FUNCTION: Let's look at some other options we have when declaring functions, starting with an anonymous function, which is a function without a name.To    make Details an anonymous function, you would modify it like this function(firstName) { return `Dr. ${firstName}`; }. However, that is not valid in JavaScript. If    you try running it in the console you will see an error that says SyntaxError: Function statements require a function name. This functions are valid in some    usecases.
+
+4. FUNCTION EXPRESSIONS: A function expression is when you store a function as a value in a variable. example: const doctorize = function (firstName) {
+   return `Dr. ${firstName}`;
+   }; . If you refresh the page, you will see that in the console, we have doctorize() available to us, and we can call it. You may come across developers who say to    not use function expressions because they used to give unhelpful errors.
+
+5. HOISTING: Functions which are declaredwith the function keyword is called hoisted. If you run a function before you define it, does it work? example: doctorize    ("wes");
+    const doctorize = function (firstName) {
+    return `Dr. ${firstName}`;
+   };
+    function doctorize2 (firstName) {
+    return `Dr. ${firstName}`;
+   }.Does it work? Nope! You get an error like: Uncaught ReferenceError. What about doctorize2? 
+
+   console.log(doctorize2("wes"));
+   const doctorize = function (firstName) {
+   return `Dr. ${firstName}`;
+  };
+   function doctorize2 (firstName) {
+   return `Dr. ${firstName}`;
+  }It works fine. JavaScript will take all functions with the function keyword and hoist them up, up, up and says "you're a function, you belong at the top of the    file". That means anywhere you call the function, it will be available to you.
+
+6. ARROW FUNCTION: Arrow function themselves have few ways of been declared. Arrow function is also an anonymous function it means there no way of declaring a function    that we used to be. You always stick it into a variable. Lets take an example of a function and lets see how it is modified as an arrow function.
+   example: function inchTocm(inch){
+            const cm = inch * 2.54;
+            return cm; } This function will take in inches and return centimeters. lets try it out inchTocm(3) //output: 7.62.
+   1. We can make it a bit shorter by instead of creating a variable and then returning a variable, we can just return the calculation directly.
+      example: function inchTocm(inch){
+               return inch * 2.54; }
+   2. Now we can convert it to an anonymous function as a step on the way to making it an arrow function.
+      example: const inchTocm = function(inch){
+               return inch * 2.54; }
+   3. Lets convert it into an arrow function now. Instead of writing a word function we can delete it and we can go to right side of the paranthesis and we can add fat       arrow. In programming -> this is called as skinny arrow and => this as a fat arrow.
+      example: const inchTocm = (inch) => {
+               return inch * 2.54; }
+   4. The next thing we will do is what is called an implicit return. An explicit return is when you type the return keyword before returning a value such as       return inches * 2.54;. That is an explicit return meaning that we explicitly return the value there.
+
+   5. Implicit return is actually returing it without using return keyword. Arrow function allows us to use implicit returns. To get rid of explicit return first       delete paranthesis, make it one line and remove return keyword.
+      example: const inchTocm = (inch) => inch * 2.54; it's all on one line, there is no return keyword, there are no curly brackets. We can actually get rid of       paranthesis if there is only one parameter in a function.
+
+7. ARROW FUNCTION GOTCHA'S: There are couple of gotcha functions along with arrow functions which we need to know. let us take an example for returning an object.
+   example: funchtion makeAbaby(first, last){
+            const baby = {
+            name: `${first} ${last}`,
+            age: 0,
+            }
+           return baby; } //this code does works! but how to write this code in an arrow function.
+
+8.  example: const makeAbaby = (first, last) => {
+            const baby = {
+            name: `${first} ${last}`,
+            age: 0,
+            }
+           return baby; };. If your function needs to do some stuff inside of the block, you can leave it as is. This is a perfectly valid arrow function. If the only    thing you're using the arrow for is the ability to type less as well as some of the benefits of not scoping this, this is totally valid.
+
+9. Instead of declaring the baby variable, we will just return the object directly.
+   example: const makeAbaby = (first, last) => {
+            return {
+            name: `${first} ${last}`,
+            age: 0,
+            }; };. How to do this in implicit return and put it one line.
+
+   example: const makeAbaby = (first, last) => {name: `${first} ${last}`, age: 0}; However this causes an error.// error: Unexpected tocken :.What's happening there is    it thinks that the curly bracket from the baby object is actually the curly bracket from the block of the function. Curly brackets in JavaScript can be the creation    of an object, or a block of code.
+
+10. If you want to implicitly return an object in JavaScript, you just pop a set of parentheses around the thing that you are returning and then the code will know     that it's not the block to the function. example: const makeAbaby = (first, last) => ({name: `${first} ${last}`, age: 0});
+
+11. IIFE: There is one more method called IIFE to create a function. That is an immediately invoked function expression. How to write a fuction in IIFE. 
+    example: (function () { console.log("Running the Anon function");
+              return `Your are cool`;
+              })();. We should wrap a function in paranthesis because parantesis always runs first in JavaScript and what that will do is run a function value.
+    if you run the above code you will see the log in the console which means our function expression was immediately invoked. It was immediately run.
+
+12. METHODS: The next function we are going to learn is methods in JavaScript. The method is simple a function which leaves inside an object. If we take a look at the     function console.log in the browser, we will see that he has been lying to us. log() is actually function which lies inside of an object called console. If you type    console into the console and expand it, you will see that there are all kinds of things within it. So console is the object and log(), count() or any of the other    functions listed under the console object are the functions. We have a special word to describe functions that live inside of an object and we call those methods.
+
+   1. example: const wes = {
+                          name: "Wes Bos",
+                          sayHi: function sayHi() {
+    			  console.log("Hey wes!");
+   			  return "Hey Wes!";
+ 				 },
+					};
+   2. There is also a new shorthand method. example: const wes = {
+                         					 name: "Wes Bos",
+                         					 sayHi: function sayHi() {
+    			  					 console.log("Hey wes!");
+   							         return "Hey Wes!";
+ 									 },
+								 yellHi() {
+   									 console.log("HEY WESSSSS");
+									  },
+										};. If you refresh the browser and type wes.yellHi(), it will work.
+   3. example: const wes = {
+                 name: 'Wes Bos',
+                 // Method!
+		  sayHi: function sayHi() {
+	          console.log('Hey Wes!');
+		    return 'Hey Wes!';
+			  },
+		  // Short hand Method
+		  yellHi() {
+		    console.log('HEY WESSSSS');
+			  },
+		  // Arrow function
+		  whisperHi: () => {
+		     console.log('hiii wess im a mouse');
+				  }
+					};. This is one more method to write a function called arrow function. Those are 3 different ways to do methods and the     shorthand is the most common way.
+
+13. PREVIEW OF this: We used arrow function because you dont want to access (this). Modify the sayHi() method to add console.log(this); and run it in the browser.
+    You will see that on the line in our code that we logged, like 50, the value of this has been returned. ((this)) is equal to the object that it was called against.
+    example: const wes = {
+		  name: 'Westopher Bos',
+		  // Method!
+		  sayHi: function sayHi() {
+		    console.log(`Hey ${this.name}`);
+		    console.log('Hey Wes!');
+		    return 'Hey Wes!';
+			  } //output: wes.sayHi() is Hey Westopher Bos, Hey Wes!.
+14. CALLBACK FUNCTION: The easiest way to describe a callback function is when someone clicks something to run this or some amount of time as passed away, run this.
+
+    1. CLICK CALLBACK: We will do a click callback. Go into index.html and add a button with a class of clickMe and text of "Click Me!"
+       <!DOCTYPE html>
+	<html lang="en">
+	  <head>
+	    <meta charset="UTF-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+	    <title></title>
+	    <link rel="stylesheet" href="../../base.css" />
+	  </head>
+	  <body>
+	    <button class="clickMe">Click Me!</button>
+	    <script src="./ways-to-make-a-function.js"></script>
+	  </body>
+	</html>. Back in the JavaScript file, let's select the element like so const button = document.querySelector(".clickMe"); console.log(button);. Next, listen        for a click on that button as shown below. When that click happens, we can pass it to any function that we want. in this case, we chose sayHi() from our wes        object from a previous example.//output: HEY WESSSS. What is happening there is that .addEventListener() is an event listener that we are listening for a click        on, and the callback function is wes.sayHi(). It's a function that we give it access to.
+       
+       Callback functions can be declared outside of the handler, like so function handleClick() { console.log("Great clicking!!"); }
+       button.addEventListener("click", handleClick);. What you need to know is that a callback function is a function that gets passed into another function and then        it is called by the browser at a later point in time.
+   
+   2. 	TIMER CALLBACK: The other example we have is a timer callback.There are a couple of ways to do timers but the simplest is setTimeout(). It take out 2 things         like a function to call after a certain amount of time, a duration in milliseconds (after how long should I run this). So let's do 1000 milliseconds which is           one second later. Example: setTimeout(wes.yellHi, 1000);. You can also pass it an anonymous function setTimeout(function () { console.log("DONE TIME TO EAT");
+	}, 1000); After a second that will log "DONE TIME TO EAT". You can also use in arrow function setTimeout(() => { console.log("DONE TIME TO EAT");}, 1000);
+        It will work the same.
+
+15. DEBUGGING TOOLS: 
+    
+    1. CONSOLE DEBUGGING: As we discussed above about console.log() as console is an object and it contains lot of build i functions as log() is one amoung many. As        console is one of the debugging tool we will learn about it. lets see console.count() if you want to know how many time your function is running we cant know by        count() in console. If you consider the following example: function doctorize(firstName) { console.count("running doctorize fuction"); return `Dr.               ${firstName}`;  } every time you type doctorize('wes'); in the console, the console will log a count. We can even pass variables to console.count().
+
+       2. console.group() this is useful if you have a bunch of stuff to log. Let us see with an example. 
+          function doALotOfStuff() {
+	  console.group("Doing some stuff");
+	  console.log("Im one");
+	  console.warn("watch out!");
+	  console.error("hey");
+	  console.groupEnd("Doing some stuff");
+		} //output: Doing some stuff, Im one, watch out, Hey, undefined.
+
+       3. You can actually also use the .groupCollapsed() method. which will by default collapse all the groups.
+
+   2. CALL STACK & STACK TRACE: Next we will talk about something called the call stack or the stack trace. The stack trace tells us which function is called and what       function called what function. 
+
+      1. lets see an example: function doctorize(firstName) {
+				return `Dr.${firstName}`;  }
+			      function greet(name) {
+                                doNotExit();
+				return `Hello.${firstName}`;  }
+			      function go() {
+                                const name = doctorize(greet(wes));
+				console.log(name);  }. You will notice that inside of greet() we have this function that doNotExist, and that will cause an error.              If we try to run that from the console, you will see an uncaught reference error. In the error log above, the console it letting us know that the error                 happened at the greet() function, which is on line 47 of debugging.js. This is where the actual error happened. That is good, but errors aren't always that             easy. You might need to know where the greet() function was called from. To figure that out, you would go to the next line which tells you that it was was             called by go() on line 52. And then it says at <anonymous>:1:1. What does that mean? We are getting that message because we called the function from the                console.
+
+   3. GRABBING ELEMENTS: If you're on a website, and you're inspecting it, and focusing on an element such as this input from Mozilla's website by clicking on it in          the element inspector, if you flip over to the console and type $0, it will return to you whatever element you had currently selected in the elements tab.
+      That is very useful because now you could do something like call $0.value() against it, and it will tell you what you have typed inside the input.
+      You might be wondering, what does 0 in the $0 mean. It means the last element that was clicked. If you were to go back to the elements tab, select another              element like a button, when you go back to the console $0 will give you the button element and$1 will give you the input. $('p') will give us            document.querySelector(), which will match the first thing that matches the selector passed. $$('p') will match ALL of the elements that match the selectors. In        the value returned from $('p') you can see it found the first paragraph, and with $$('p'), it found all of the p elements on the page.
+ 
+   4. BREAKING POINT: What does the breaking point do? If you want to pause the JavaScript from running, you can type debugger; inside the code. That is a statement          that only takes into effect when your dev tools are open, and it will pause JavaScript from running and allow us to peer into JavaScript at that very moment.
+      what happens is that we have set what is called a breakpoint. When you set a breakpoint, you are telling JavaScript to break execution of code when it reaches       that line(debugger;).
+   
+   5. NETWORK REQUEST: This is useful when you want to see what is happening when you load a page. If you go to your nework tab and refresh the page you will see all       the files that is used in order to load the page. When you are working with API Calls, This tells you the information about the request, what actually happened,       the raw response and a preview of it. It gives you information such as how long did this request take. For example, if your website is slow, it will tell you how       long the request took, and where the time was spent.
+
+    
